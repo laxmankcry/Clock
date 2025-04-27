@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .clock {
+            background-color: #1e1e1e;
+            color: #00ffaa;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 170, 0.3);
+            font-size: 4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .colon {
+            margin: 0 10px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <span id="hours">00</span>
+        <span class="colon">:</span>
+        <span id="minutes">00</span>
+        <span class="colon">:</span>
+        <span id="seconds">00</span>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            
+            // Get hours, minutes, seconds
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            
+            // Update the display
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Update the clock immediately and then every second
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
